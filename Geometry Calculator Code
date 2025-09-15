@@ -1,0 +1,383 @@
+import java.util.Scanner;
+import java.util.InputMismatchException;
+import static java.lang.Math.sqrt;
+
+public class GeometryCalc2 {
+
+    public static double round(double value) {
+        return Math.round(value * 100.0) / 100.0;
+    }
+
+    public static void main (String[] args) {
+
+     Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Welcome to my Geometric calculator.");
+        System.out.println("The goal of this program is to solve mathematical problems involving different 2D and 3D shapes using given variables.");
+
+        while (true) {
+            System.out.println("\nHere are the following shapes from 2D to 3D: ");
+            System.out.println("\n1 - 2D-Rectangle");
+            System.out.println("2 - 2D-Square");
+            System.out.println("3 - 2D-Triangle");
+            System.out.println("4 - 2D-Circle");
+            System.out.println("5 - 2D-Parallelogram");
+            System.out.println("6 - 2D-Rhombus");
+            System.out.println("7 - 2D-Trapezoid");
+            System.out.println("8 - 3D-Rectangular Prism");
+            System.out.println("9 - 3D-Cube");
+            System.out.println("10 - 3D-Square Pyramid");
+            System.out.println("11 - 3D-Sphere");
+            System.out.println("12 - 3D-Cylinder");
+            System.out.println("13 - 3D-Cone");
+            System.out.println("14 - EXIT");
+            System.out.print("\nChoose a shape (1-14): ");
+            int shapeChoice;
+            try {
+                shapeChoice = scanner.nextInt();
+                scanner.nextLine();
+            } catch (InputMismatchException e) {
+                System.out.println("\nERROR: Invalid Input, please choose a number from (1 - 14).");
+                scanner.nextLine();
+                continue;
+            }
+            if (shapeChoice == 1) {
+                rectangle(scanner);
+            }
+
+
+
+
+        }//While end bracket for selecting shapes loop
+    }// Main end bracket
+
+    public static void rectangle(Scanner scanner) {
+        System.out.println("\nWhat are you trying to find from a rectangle?: ");
+        System.out.println("1 - Length");
+        System.out.println("2 - Width");
+        System.out.println("3 - Diagonal");
+        System.out.println("4 - Perimeter");
+        System.out.println("5 - Area");
+        int rectangleChoice;
+        try {
+            System.out.print("\nChoose from (1 - 5): ");
+            rectangleChoice = scanner.nextInt();
+            scanner.nextLine();
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid input! Select from (1 - 5).");
+            scanner.nextLine();
+            return;
+        }
+        switch (rectangleChoice) {
+            case 1 -> lengthRectangle2D(scanner);
+            case 2 -> widthRectangle2D(scanner);
+            case 3 -> diagonalRectangle2D(scanner);
+            case 4 -> perimeterRectangle2D(scanner);
+            case 5 -> areaRectangle2D(scanner);
+        }
+    } //rectangle selector helper end bracket
+
+    public static void lengthRectangle2D(Scanner scanner){
+        System.out.println("\nWhat are the given variables so we can find the length of a 2D rectangle?");
+        System.out.println("1 - Width and Diagonal.");
+        System.out.println("2 - Width and Perimeter");
+        System.out.println("3 - Width and Area");
+        int lengthRectangle2DChoice;
+        try {
+            System.out.print("Choose from (1 - 3): ");
+            lengthRectangle2DChoice = scanner.nextInt();
+            scanner.nextLine();
+        } catch (InputMismatchException e) {
+            System.out.print("Invalid input! Please select a number from (1 - 3): ");
+            scanner.nextLine();
+            return;
+        }
+        switch (lengthRectangle2DChoice) {
+            case 1 -> {
+                System.out.print("Enter Width: ");
+                double widthRectangle2DCase1 = scanner.nextDouble();
+                System.out.print("Enter Diagonal: ");
+                double diagonalRectangle2DCase1 = scanner.nextDouble();
+                scanner.nextLine();
+                double rectangle2DCase1 = round(sqrt((diagonalRectangle2DCase1 * diagonalRectangle2DCase1) - (widthRectangle2DCase1 * widthRectangle2DCase1)));
+                System.out.println("The length of the rectangle is: " + rectangle2DCase1);
+            }
+            case 2 -> {
+                System.out.print("Enter Width: ");
+                double widthRectangle2DCase2 = scanner.nextDouble();
+                System.out.print("Enter Perimeter: ");
+                double perimeterRectangle2DCase2 = scanner.nextDouble();
+                scanner.nextLine();
+                double rectangle2DCase2 = round((perimeterRectangle2DCase2 - widthRectangle2DCase2 * 2) / 2);
+                System.out.println("The length of the rectangle is: " + rectangle2DCase2);
+            }
+            case 3 -> {
+                System.out.print("Enter Width: ");
+                double widthRectangle2DCase3 = scanner.nextDouble();
+                System.out.print("Enter Area: ");
+                double areaRectangle2DCase3 = scanner.nextDouble();
+                scanner.nextLine();
+                double rectangle2DCase3 = round(areaRectangle2DCase3 / widthRectangle2DCase3);
+                System.out.println("The length of the rectangle is: " + rectangle2DCase3);
+            }
+            default -> System.out.println("\nInvalid choice! Please choose 1-3.");
+        }// Switch end bracket for length info selection
+    }// lengthRectangle2D helper calculator end bracket
+    public static void widthRectangle2D (Scanner scanner) {
+        System.out.println("\nWhat are the given variables so we can find the width of a 2D rectangle?");
+        System.out.println("1 - Length and Diagonal.");
+        System.out.println("2 - Length and Perimeter.");
+        System.out.println("3 - Length and Area.");
+        int widthRectangle2DChoice;
+        try {
+            System.out.print("Choose from (1 - 3): ");
+            widthRectangle2DChoice = scanner.nextInt();
+            scanner.nextLine();
+        } catch (InputMismatchException e) {
+            System.out.print("Invalid input! Please select a number from (1 - 3): ");
+            scanner.nextLine();
+            return;
+        }
+        switch (widthRectangle2DChoice) {
+            case 1 -> {
+                System.out.print("Enter Length: ");
+                double lengthRectangle2DCase1 = scanner.nextDouble();
+                System.out.print("Enter Diagonal: ");
+                double diagonalRectangle2DCase1 = scanner.nextDouble();
+                scanner.nextLine();
+                double rectangle2DCase1 = round(sqrt((diagonalRectangle2DCase1 * diagonalRectangle2DCase1) - (lengthRectangle2DCase1 * lengthRectangle2DCase1)));
+                System.out.println("The width of the rectangle is: " + rectangle2DCase1);
+            }
+            case 2 -> {
+                System.out.print("Enter Length: ");
+                double lengthRectangle2DCase2 = scanner.nextDouble();
+                System.out.print("Enter Perimeter: ");
+                double perimeterRectangle2DCase2 = scanner.nextDouble();
+                scanner.nextLine();
+                double rectangle2DCase2 = round((perimeterRectangle2DCase2 - lengthRectangle2DCase2 * 2) / 2);
+                System.out.println("The width of the rectangle is: " + rectangle2DCase2);
+            }
+            case 3 -> {
+                System.out.print("Enter Length: ");
+                double lengthRectangle2DCase3 = scanner.nextDouble();
+                System.out.print("Enter Area: ");
+                double areaRectangle2DCase3 = scanner.nextDouble();
+                scanner.nextLine();
+                double rectangle2DCase3 = round(areaRectangle2DCase3 / lengthRectangle2DCase3);
+                System.out.println("The width of the rectangle is " + rectangle2DCase3);
+            }
+            default -> System.out.println("Invalid input! Please select a number for (1 - 3): ");
+        }// Switch end bracket for width info selection
+    }// widthRectangle2D helper calculator end bracket
+
+    public static void diagonalRectangle2D(Scanner scanner) {
+        System.out.println("What are the given variables so we can find the diagonal of a 2D rectangle?");
+        System.out.println("1 - Length and Width.");
+        System.out.println("2 - Length and Perimeter.");
+        System.out.println("3 - Width and Perimeter.");
+        System.out.println("4 - Length and Area.");
+        System.out.println("5 - Width and Area.");
+        int diagonalRectangle2DChoice;
+        try {
+            System.out.print("Choose from (1 - 5): ");
+            diagonalRectangle2DChoice = scanner.nextInt();
+            scanner.nextLine();
+        } catch (InputMismatchException e) {
+            System.out.println("Enter a valid number! ( 1 - 5)");
+            scanner.nextLine();
+            return;
+        }
+        switch (diagonalRectangle2DChoice){
+            case 1 -> {
+                System.out.print("Enter Length: ");
+                double lengthRectangle2DCase1 = scanner.nextDouble();
+                System.out.print("Enter Width: ");
+                double widthRectangle2DCase1 = scanner.nextDouble();
+                scanner.nextLine();
+                double diagonalRectangle2DCase1 = round(sqrt((lengthRectangle2DCase1 * lengthRectangle2DCase1) + (widthRectangle2DCase1 * widthRectangle2DCase1)));
+                System.out.println("The diagonal of the rectangle is: " + diagonalRectangle2DCase1);
+            }
+            case 2 -> {
+                System.out.print("Enter Length: ");
+                double lengthRectangle2DCase2 = scanner.nextDouble();
+                System.out.print("Enter Perimeter: ");
+                double perimeterRectangle2DCase2 = scanner.nextDouble();
+                scanner.nextLine();
+                double widthRectangle2DCase2 = (perimeterRectangle2DCase2 - lengthRectangle2DCase2 * 2) / 2;
+                double diagonalRectangle2DCase2 = round(sqrt((lengthRectangle2DCase2 * lengthRectangle2DCase2) + (widthRectangle2DCase2 * widthRectangle2DCase2)));
+                System.out.println("The diagonal of the rectangle is: " + diagonalRectangle2DCase2);
+            }
+            case 3 -> {
+                System.out.print("Enter Width: ");
+                double widthRectangle2DCase3 = scanner.nextDouble();
+                System.out.print("Enter Perimeter: ");
+                double perimeterRectangle2DCase3 = scanner.nextDouble();
+                scanner.nextLine();
+                double lengthRectangle2DCase3 = (perimeterRectangle2DCase3 - widthRectangle2DCase3 * 2) / 2;
+                double diagonalRectangle2DCase3 = round(sqrt((lengthRectangle2DCase3 * lengthRectangle2DCase3) + (widthRectangle2DCase3 * widthRectangle2DCase3)));
+                System.out.println("The diagonal of the rectangle is: " + diagonalRectangle2DCase3);
+            }
+            case 4 -> {
+                System.out.print("Enter Length: ");
+                double lengthRectangle2DCase4 = scanner.nextDouble();
+                System.out.print("Enter Area: ");
+                double areaRectangle2DCase4 = scanner.nextDouble();
+                scanner.nextLine();
+                double widthRectangle2DCase4 = areaRectangle2DCase4 / lengthRectangle2DCase4;
+                double diagonalRectangle2DCase4 = round(sqrt((lengthRectangle2DCase4 * lengthRectangle2DCase4) + (widthRectangle2DCase4 * widthRectangle2DCase4)));
+                System.out.println("The diagonal of the rectangle is: " + diagonalRectangle2DCase4);
+            }
+            case 5 -> {
+                System.out.print("Enter Width: ");
+                double widthRectangle2DCase5 = scanner.nextDouble();
+                System.out.print("Enter Area: ");
+                double areaRectangle2DCase5 = scanner.nextDouble();
+                scanner.nextLine();
+                double lengthRectangle2DCase5 = areaRectangle2DCase5 / widthRectangle2DCase5;
+                double diagonalRectangle2DCase5 = round(sqrt((lengthRectangle2DCase5 * lengthRectangle2DCase5) + (widthRectangle2DCase5 * widthRectangle2DCase5)));
+                System.out.println("The diagonal of the rectangle is: " + diagonalRectangle2DCase5);
+            }
+            default -> System.out.println("Invalid input! Please select a number for (1 - 5): ");
+        }// Switch end bracket for diagonal info selection
+    } //diagonalRectangle2D helper calculator end bracket
+    public static void perimeterRectangle2D (Scanner scanner) {
+        System.out.println("\nWhat are the given variables so we can find the perimeter of a 2D rectangle?");
+        System.out.println("1 - Length and Width.");
+        System.out.println("2 - Length and Diagonal.");
+        System.out.println("3 - Width and Diagonal.");
+        System.out.println("4 - Length and Area.");
+        System.out.println("5 - Width and Area.");
+        int perimeterRectangle2DChoice;
+        try {
+            System.out.print("Choose from (1 - 5): ");
+            perimeterRectangle2DChoice = scanner.nextInt();
+            scanner.nextLine();
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid Input! Choose from (1 - 5).");
+            scanner.nextLine();
+            return;
+        }
+        switch (perimeterRectangle2DChoice) {
+            case 1 -> {
+                System.out.print("Enter Length: ");
+                double lengthRectangle2DCase1 = scanner.nextDouble();
+                System.out.print("Enter Width: ");
+                double widthRectangle2DCase1 = scanner.nextDouble();
+                scanner.close();
+                double perimeterRectangle2DCase1 = round(2 * (lengthRectangle2DCase1 + widthRectangle2DCase1));
+                System.out.println("The perimeter of the rectangle is: " + perimeterRectangle2DCase1);
+            }
+            case 2 -> {
+                System.out.print("Enter Length: ");
+                double lengthRectangle2DCase2 = scanner.nextDouble();
+                System.out.print("Enter Diagonal: ");
+                double diagonalRectangle2DCase2 = scanner.nextDouble();
+                scanner.close();
+                double widthRectangle2DCase2 = sqrt((diagonalRectangle2DCase2 * diagonalRectangle2DCase2) + (lengthRectangle2DCase2 * lengthRectangle2DCase2));
+                double perimeterRectangle2DCase2 = round(2 * (lengthRectangle2DCase2 + widthRectangle2DCase2));
+                System.out.print("The perimeter of the rectangle is: " + perimeterRectangle2DCase2);
+            }
+            case 3 -> {
+                System.out.print("Enter Width: ");
+                double widthRectangle2DCase3 = scanner.nextDouble();
+                System.out.print("Enter Diagonal: ");
+                double diagonalRectangle2DCase3 = scanner.nextDouble();
+                double lengthRectangle2DCase3 = sqrt((diagonalRectangle2DCase3 * diagonalRectangle2DCase3) + (widthRectangle2DCase3 * widthRectangle2DCase3));
+                double perimeterRectangle2DCase3 = round(2 * (lengthRectangle2DCase3 + widthRectangle2DCase3));
+                System.out.println("The perimeter of the rectangle is: " + perimeterRectangle2DCase3);
+            }
+            case 4 -> {
+                System.out.print("Enter Length: ");
+                double lengthRectangle2DCase4 = scanner.nextDouble();
+                System.out.print("Enter Area: ");
+                double areaRectangle2DCase4 = scanner.nextDouble();
+                scanner.nextLine();
+                double widthRectangle2DCase4 = areaRectangle2DCase4 / lengthRectangle2DCase4;
+                double perimeterRectangle2DCase4 = round(2 * (lengthRectangle2DCase4 + widthRectangle2DCase4));
+                System.out.println("The perimeter of the rectangle is: " + perimeterRectangle2DCase4);
+            }
+            case 5 -> {
+                System.out.print("Enter Width: ");
+                double widthRectangle2DCase5 = scanner.nextDouble();
+                System.out.print("Enter Area: ");
+                double areaRectangle2DCase5 = scanner.nextDouble();
+                scanner.nextLine();
+                double lengthRectangle2DCase5 = areaRectangle2DCase5 / widthRectangle2DCase5;
+                double perimeterRectangle2DCase5 = round(2 * (lengthRectangle2DCase5 + widthRectangle2DCase5));
+                System.out.println("The perimeter of the rectangle is: " + perimeterRectangle2DCase5);
+            }
+            default -> System.out.println("Invalid input! Please select a number for (1 - 5): ");
+        }//Switch end bracket for perimeter info selection
+    }//perimeterRectangle2D helper calculator end bracket
+    public static void areaRectangle2D (Scanner scanner) {
+        System.out.println("Whare are the given variables so we can find the area of a 2D rectangle?");
+        System.out.println("1 - Length and Width.");
+        System.out.println("2 - Length and Diagonal.");
+        System.out.println("3 - Width and Diagonal.");
+        System.out.println("4 - Length and Perimeter.");
+        System.out.println("5 - Width and Perimeter.");
+        int areaRectangle2DChoice;
+        try {
+            System.out.print("Choose from (1 - 5): ");
+            areaRectangle2DChoice = scanner.nextInt();
+            scanner.nextLine();
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid input! Choose a number from (1 - 5)");
+            scanner.nextLine();
+            return;
+        }
+        switch (areaRectangle2DChoice) {
+            case 1 -> {
+                System.out.print("Enter Length: ");
+                double lengthRectangle2DCase1 = scanner.nextDouble();
+                System.out.print("Enter Width: ");
+                double widthRectangle2DCase1 = scanner.nextDouble();
+                scanner.nextLine();
+                double areaRectangle2DCase1 = round(lengthRectangle2DCase1 * widthRectangle2DCase1);
+                System.out.println("The area of the rectangle is: " + areaRectangle2DCase1);
+            }
+            case 2 -> {
+                System.out.print("Enter Length: ");
+                double lengthRectangle2DCase2 = scanner.nextDouble();
+                System.out.print("Enter Diagonal: ");
+                double diagonalRectangle2DCase2 = scanner.nextDouble();
+                scanner.nextLine();
+                double widthRectangle2DCase2 = sqrt((diagonalRectangle2DCase2 * diagonalRectangle2DCase2) + (lengthRectangle2DCase2 * lengthRectangle2DCase2));
+                double areaRectangle2DCase2 = round(lengthRectangle2DCase2 * widthRectangle2DCase2);
+                System.out.println("The area of the rectangle is: " + areaRectangle2DCase2);
+            }
+            case 3 -> {
+                System.out.print("Enter Width: ");
+                double widthRectangle2DCase3 = scanner.nextDouble();
+                System.out.print("Enter Diagonal: ");
+                double diagonalRectangle2DCase3 = scanner.nextDouble();
+                scanner.nextLine();
+                double lengthRectangle2DCase3 = sqrt((diagonalRectangle2DCase3 * diagonalRectangle2DCase3) + (widthRectangle2DCase3 * widthRectangle2DCase3));
+                double areaRectangle2DCase3 = round(lengthRectangle2DCase3 * widthRectangle2DCase3);
+                System.out.println("The area of the rectangle is: " + areaRectangle2DCase3);
+            }
+            case 4 -> {
+                System.out.print("Enter Length: ");
+                double lengthRectangle2DCase4 = scanner.nextDouble();
+                System.out.print("Enter Perimeter: ");
+                double perimeterRectangle2DCase4 = scanner.nextDouble();
+                scanner.nextLine();
+                double widthRectangle2DCase4 = (perimeterRectangle2DCase4 - lengthRectangle2DCase4 * 2) / 2;
+                double areaRectangle2DCase4 = round((lengthRectangle2DCase4 * widthRectangle2DCase4));
+                System.out.println("The area of the rectangle is: " + areaRectangle2DCase4);
+            }
+            case 5 -> {
+                System.out.print("Enter Width: ");
+                double widthRectangle2DCase5 = scanner.nextDouble();
+                System.out.print("Enter Perimeter: ");
+                double perimeterRectangle2DCase5 = scanner.nextDouble();
+                scanner.nextLine();
+                double lengthRectangle2DCase5 = (perimeterRectangle2DCase5 - widthRectangle2DCase5 * 2) / 2;
+                double areaRectangle2DCase5 = round(lengthRectangle2DCase5 * widthRectangle2DCase5);
+                System.out.println("The area of the rectangle is: " + areaRectangle2DCase5);
+            }
+            default -> System.out.println("Invalid input! Please select a number for (1 - 5): ");
+        }//Switch end bracket for area info selection
+    }//areaRectangle2D helper calculator end bracket
+
+}// GeometryCalc Class end bracket
